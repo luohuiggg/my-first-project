@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style type="text/css">
+    html,
+    body,
+    .carousel,
+    .carousel-inner,
+    .item {
+      height: 100%;
+    }
+
+    .goIndex {
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 30px;
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      background-color: blue
+    }
+
+    .showModal {
+      width: 100px;
+      height: 50px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 20px;
+      background-color: blue;
+      position: absolute;
+      bottom: 60px;
+      right: 15px;
+      top: 10px;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="./素材/素材/0-引导图1.png" alt="引导页1" style="width: 100%;height: 100%;">
+      </div>
+      <div class="item">
+        <img src="./素材/素材/0-引导图2.png" alt="引导页2" style="width: 100%;height: 100%;">
+      </div>
+      <div class="item">
+        <img src="./素材/素材/0-引导图3.png" alt="引导页3" style="width: 100%;height: 100%;">
+      </div>
+      <div class="item">
+        <img src="./素材/素材/0-引导图4.png" alt="引导页4" style="width: 100%;height: 100%;">
+      </div>
+      <div class="item">
+        <img src="./素材/素材/0-引导图5.png" alt="引导页5" style="width: 100%;height: 100%;">
+        <div class="goIndex">
+          进入主页
+        </div>
+        <button type="button" class="btn btn-primary btn-lg showModal" data-toggle="modal" data-target="#myModal">
+          设置网络
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">设置网络</h4>
+        </div>
+        <div class="modal-body">
+          <input type="text" placeholder="请输入IP和端口">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">设置</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./jquery-3.7.1.js"></script>
+  <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+  <script>
+    $(function () {
+      $('.goIndex').get(0).onclick = () => {
+        window.location.href = './index.html';
+      };
+    });
+  </script>
+</body>
+
+</html>

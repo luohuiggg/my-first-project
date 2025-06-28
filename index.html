@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    .navBar {
+      height: 56px;
+      background-color: rgb(26, 36, 165);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .footer {
+      width: 100%;
+      height: 40px;
+      padding: 5px;
+      position: fixed;
+      bottom: 0;
+    }
+
+    .tabbar {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    .tabbar-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .tabbar-box img {
+      width: 20%;
+    }
+
+    /* 搜索栏 */
+    .search {
+      margin-top: 20px;
+    }
+
+    /* 应用城市服务入口 */
+    .grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, auto);
+    }
+
+    .grid div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .grid div img {
+      width: 40px;
+      height: 40px;
+    }
+
+    /* 热门主题 */
+    .newsList {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+    }
+
+    .newsList div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .newsList div img {
+      width: 90%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部标题栏 -->
+  <div class="navBar">
+    <div class="navBarTitle">
+      首页
+    </div>
+  </div>
+
+  <div style="width: 90%; margin: 0 auto">
+    <!-- 搜索 -->
+    <div class="search">
+      <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true">
+        </span>
+        <input type="text" class="form-control" id="inputGroupSuccess3" aria-describedby="inputGroupSuccess3Status"
+          placeholder="输入搜索内容">
+      </div>
+    </div>
+
+    <!-- 轮播 -->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="./素材/素材/carousel.png" />
+        </div>
+        <div class="item">
+          <img src="./素材/素材/banner2.png" />
+        </div>
+        <div class="item">
+          <img src="./素材/素材/banner3.png" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 智慧城市应用服务入口 -->
+    <div class="grid">
+      <div>
+        <img src="./素材/素材/城市地铁.png">
+        <div>城市地铁</div>
+      </div>
+      <div>
+        <img src="./素材/素材/机会酒店.png">
+        <div>机会酒店</div>
+      </div>
+      <div>
+        <img src="./素材/素材/党建素材/课程分类.png">
+        <div>课程分类</div>
+      </div>
+      <div>
+        <img src="./素材/素材/党建素材/课程评价.png">
+        <div>课程评价</div>
+      </div>
+      <div>
+        <img src="./素材/素材/数据分析.png">
+        <div>数据分析</div>
+      </div>
+      <div>
+        <img src="./素材/素材/线路查询.png">
+        <div>线路查询</div>
+      </div>
+      <div>
+        <img src="./素材/素材/线路查询1.png">
+        <div>线路查询1</div>
+      </div>
+      <div>
+        <img src="./素材/素材/移车.png">
+        <div>移车</div>
+      </div>
+      <div>
+        <img src="./素材/素材/找房子.png">
+        <div>找房子</div>
+      </div>
+      <div>
+        <img src="./素材/素材/党建素材/更多.png">
+        <div>更多</div>
+      </div>
+    </div>
+
+    <!-- 热门主题 -->
+    <div class="newsList">
+      <div>
+        <img src="./素材/素材/banner1.png">
+        <div> 致力于农村基础设施建设</div>
+      </div>
+      <div>
+        <img src="./素材/素材/banner2.png">
+        <div> 常德联通：精准扶贫暖人心</div>
+      </div>
+      <div>
+        <img src="./素材/素材/banner3.png">
+        <div> 中脉不惧虚假宣传谣言</div>
+      </div>
+      <div>
+        <img src="./素材/素材/banner4.png">
+        <div> 专项工作创特色 山西走出精</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部导航栏 -->
+  <div class="footer">
+    <div class="tabbar">
+      <div class="tabbar-box" data-url="index.html">
+        <img src="./素材/素材/机会酒店.png">
+        <div>首页</div>
+      </div>
+      <div class="tabbar-box" data-url="数据分析页实现.html">
+        <img src="./素材/素材/数据分析.png">
+        <div>数据分析</div>
+      </div>
+      <div class="tabbar-box" data-url="智慧党建.html">
+        <img src="./素材/素材/智慧党建.png">
+        <div>智慧党建</div>
+      </div>
+      <div class="tabbar-box" data-url="个人中心.html">
+        <img src="./素材/素材/机会酒店.png">
+        <div>个人中心</div>
+      </div>
+    </div>
+
+    <script src="./jquery-3.7.1.js"></script>
+    <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+      $(
+        function () {
+          $('.tabbar-box').click(
+            function () {
+              let url = $(this).data('url');
+              window.location.href = url;
+            }
+          )
+        }
+      )
+    </script>
+</body>
+
+</html>

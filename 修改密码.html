@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>修改密码</title>
+  <!-- 引入 Bootstrap 3 的 CSS 文件 -->
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    .navBar {
+      height: 56px;
+      background-color: rgb(26, 36, 165);
+      display: flex;
+      align-items: center;
+      color: white;
+      position: relative;
+      padding: 0 15px;
+    }
+
+    .navBar span {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* 表单容器样式 */
+    .form-container {
+      width: 80%;
+      max-width: 400px;
+      margin: 30px auto 0;
+      /* 与navBar的间距 */
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 表单组样式 */
+    .form-container .form-group {
+      width: 100%;
+      margin-bottom: 20px;
+      /* 三个form-group之间的间距 */
+    }
+
+    /* 最后一个输入框和按钮之间的间距 */
+    .form-container .form-group:last-child {
+      margin-bottom: 40px;
+      /* 两倍的间距 */
+    }
+
+    /* 按钮样式 */
+    .form-container .btn-purple {
+      width: 100%;
+      margin-top: 40px;
+      /* 与最后一个输入框的间距为两倍 */
+    }
+
+    /* 输入框样式 */
+    .form-control {
+      background-color: #e6e6e6;
+      width: 300px;
+      border: none;
+      box-shadow: none;
+      height: 45px;
+      border-radius: 4px;
+    }
+
+    /* 确认按钮样式 */
+    .btn-purple {
+      background-color: #6f42c1;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+
+    .btn-purple:hover {
+      background-color: #5a3297;
+    }
+
+    /* 错误提示样式 */
+    .error-message {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    /* 密码强度提示 */
+    .password-hint {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部标题栏 -->
+  <div class="navBar">
+    <a href="javascript:history.back()" style="color: white;">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" id="backButton"></span>
+    </a>
+    <div class="navBarTitle">
+      修改密码
+    </div>
+  </div>
+
+  <!-- 表单容器 -->
+  <div class="form-container">
+    <form id="passwordForm">
+      <div class="form-group">
+        <input type="password" class="form-control" id="oldPassword" placeholder="输入原密码" required>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="newPassword" placeholder="输入新密码" required>
+        <div class="password-hint">密码必须包含字母和数字，长度为8-20个字符</div>
+        <div class="error-message" id="newPasswordError"></div>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="confirmPassword" placeholder="输入确认密码" required>
+        <div class="error-message" id="confirmPasswordError"></div>
+      </div>
+      <button type="submit" class="btn btn-purple">确定</button>
+    </form>
+  </div>
+
+  <!-- 引入 jQuery 文件 -->
+  <script src="./jquery-3.7.1.js"></script>
+  <!-- 引入 Bootstrap 3 的 JS 文件 -->
+  <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#backButton').click(function () {
+        window.location.href = '个人中心.html';
+      });
+
+      // 密码正则表达式：必须包含字母和数字，8-20个字符
+      var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
+
+      // 新密码验证
+      $('#newPassword').on('input', function () {
+        var newPassword = $(this).val();
+        var errorElement = $('#newPasswordError');
+
+        if (!passwordRegex.test(newPassword)) {
+          errorElement.text('密码必须包含字母和数字，长度为8-20个字符').show();
+        } else {
+          errorElement.hide();
+        }
+
+        // 如果确认密码已输入，检查是否匹配
+        if ($('#confirmPassword').val()) {
+          validatePasswordMatch();
+        }
+      });
+
+      // 确认密码验证
+      $('#confirmPassword').on('input', validatePasswordMatch);
+
+      function validatePasswordMatch() {
+        var newPassword = $('#newPassword').val();
+        var confirmPassword = $('#confirmPassword').val();
+        var errorElement = $('#confirmPasswordError');
+
+        if (newPassword && confirmPassword && newPassword !== confirmPassword) {
+          errorElement.text('两次输入的密码不一致').show();
+        } else {
+          errorElement.hide();
+        }
+      }
+
+      // 表单提交验证
+      $('#passwordForm').submit(function (e) {
+        e.preventDefault();
+
+        var oldPassword = $('#oldPassword').val();
+        var newPassword = $('#newPassword').val();
+        var confirmPassword = $('#confirmPassword').val();
+
+        // 验证新密码格式
+        if (!passwordRegex.test(newPassword)) {
+          $('#newPasswordError').text('密码必须包含字母和数字，长度为8-20个字符').show();
+          return false;
+        }
+
+        // 验证两次密码是否一致
+        if (newPassword !== confirmPassword) {
+          $('#confirmPasswordError').text('两次输入的密码不一致').show();
+          return false;
+        }
+
+        // 所有验证通过，可以提交表单
+        alert('密码修改成功！');
+        // 这里可以添加实际的表单提交代码
+        // this.submit();
+      });
+    });
+  </script>
+</body>
+
+</html>

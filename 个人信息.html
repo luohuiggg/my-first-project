@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人信息</title>
+  <!-- 引入 Bootstrap 3 的 CSS 文件 -->
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    .navBar {
+      height: 56px;
+      background-color: rgb(26, 36, 165);
+      display: flex;
+      align-items: center;
+      color: white;
+      position: relative;
+      padding: 0 15px;
+    }
+
+    .navBar span {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* 中间区域 */
+    /* 用户信息 */
+    .userInfo {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .userInfo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .userInfo img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .avatar-btn {
+      position: absolute;
+      left: calc(100% + 20px);
+    }
+
+    /* 操作列表 */
+    .operationList {
+      margin-top: 30px;
+    }
+
+    .operationList-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .operationList-item label {
+      margin-bottom: 0;
+      min-width: 80px;
+    }
+
+    .operationList input {
+      flex: 1;
+      max-width: 70%;
+      text-align: left;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .operationList input:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .button {
+      background-color: #1989fa;
+      width: 90%;
+      height: 40px;
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+      border: none;
+      color: white;
+      border-radius: 4px;
+    }
+
+    /* 性别选择样式 */
+    .gender-options {
+      display: flex;
+      gap: 15px;
+    }
+
+    .radio-inline {
+      margin-right: 10px;
+    }
+
+    /* 身份证号只读样式 */
+    #idCard {
+      color: #999;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部标题栏 -->
+  <div class="navBar">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" id="backButton"></span>
+    <div class="navBarTitle">
+      个人信息
+    </div>
+  </div>
+
+  <!-- 中间内容区域 -->
+  <div style="width: 90%; margin: 0 auto">
+    <!-- 用户信息 -->
+    <div class="userInfo">
+      <div class="userInfo-container">
+        <img id="avatarPreview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+        <button class="btn btn-primary avatar-btn">选择头像</button>
+        <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+      </div>
+    </div>
+
+    <!-- 操作列表 -->
+    <div class="operationList">
+      <div class="operationList-item">
+        <label for="nickname">昵称：</label>
+        <input type="text" class="form-control" id="nickname" value="adsadsda" readonly>
+      </div>
+      <div class="operationList-item">
+        <label>性别：</label>
+        <div class="gender-options">
+          <label class="radio-inline">
+            <input type="radio" name="gender" value="male"> 男
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gender" value="female"> 女
+          </label>
+        </div>
+      </div>
+      <div class="operationList-item">
+        <label for="phone">手机号：</label>
+        <input type="text" class="form-control" id="phone" value="13467579989" readonly>
+      </div>
+      <div class="operationList-item">
+        <label for="idCard">身份证号：</label>
+        <input type="text" class="form-control" id="idCard" value="**********7778">
+      </div>
+    </div>
+
+    <!-- 修改按钮 -->
+    <button class="button">修改</button>
+  </div>
+
+  <!-- 引入 jQuery 文件 -->
+  <script src="./jquery-3.7.1.js"></script>
+  <!-- 引入 Bootstrap 3 的 JS 文件 -->
+  <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+  <script>
+    $(function () {
+      // 头像选择功能
+      $(".avatar-btn").click(function () {
+        $("#avatarUpload").click();
+      });
+
+      $("#avatarUpload").change(function (e) {
+        if (e.target.files && e.target.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (event) {
+            $("#avatarPreview").attr("src", event.target.result);
+          }
+
+          reader.readAsDataURL(e.target.files[0]);
+        }
+      });
+
+      // 设置默认选中的性别（示例中未显示选中状态，可根据实际需求设置）
+      // $("input[name='gender'][value='male']").prop("checked", true);
+    });
+  </script>
+
+  <script>
+    // 使用jQuery
+    $(document).ready(function () {
+      $('#backButton').click(function () {
+        window.location.href = '个人中心.html';
+      });
+    });
+  </script>
+</body>
+
+</html>

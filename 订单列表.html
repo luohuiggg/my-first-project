@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>订单列表</title>
+  <!-- 引入 Bootstrap 3 CSS -->
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    .navBar {
+      height: 56px;
+      background-color: rgb(26, 36, 165);
+      display: flex;
+      align-items: center;
+      color: white;
+      position: relative;
+      padding: 0 15px;
+    }
+
+    .navBar span {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* 修改选项卡容器样式 */
+    .nav-tabs {
+      display: flex;
+      width: 100%;
+      border-bottom: none;
+    }
+
+    /* 修改选项卡项样式 */
+    .nav-tabs>li {
+      flex: 1;
+      text-align: center;
+    }
+
+    .nav-tabs>li>a {
+      color: #333;
+      border: none;
+      margin-right: 0;
+      display: block;
+      padding: 10px 15px;
+    }
+
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:focus,
+    .nav-tabs>li.active>a:hover {
+      border: none;
+      border-bottom: 2px solid #6f42c1;
+      color: #6f42c1;
+      background-color: transparent;
+    }
+
+    /* 订单卡片样式 */
+    .order-card {
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部标题栏 -->
+  <div class="navBar">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" id="backButton"></span>
+    <div class="navBarTitle">
+      订单列表
+    </div>
+  </div>
+
+  <!-- 内容容器 -->
+  <div class="container" style="padding-top:20px;">
+    <!-- 选项卡 - 修改为平均分布 -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#unpaid" aria-controls="unpaid" role="tab" data-toggle="tab">待支付</a>
+      </li>
+      <li role="presentation">
+        <a href="#paid" aria-controls="paid" role="tab" data-toggle="tab">已支付</a>
+      </li>
+    </ul>
+
+    <!-- 选项卡内容 -->
+    <div class="tab-content" style="padding-top:20px;">
+      <!-- 待支付订单 -->
+      <div role="tabpanel" class="tab-pane active" id="unpaid">
+        <div class="order-card">
+          <p>订单号:4534554</p>
+          <p>订单类型:待支付</p>
+          <p>订单生成日期: 2021-05-30 12:00:00</p>
+        </div>
+        <div class="order-card">
+          <p>订单号:4534554</p>
+          <p>订单类型:待支付</p>
+          <p>订单生成日期: 2021-05-30 12:00:00</p>
+        </div>
+        <div class="order-card">
+          <p>订单号:4534554</p>
+          <p>订单类型:待支付</p>
+          <p>订单生成日期: 2021-05-30 12:00:00</p>
+        </div>
+        <div class="order-card">
+          <p>订单号:4534554</p>
+          <p>订单类型:待支付</p>
+          <p>订单生成日期: 2021-05-30 12:00:00</p>
+        </div>
+      </div>
+
+      <!-- 已支付订单（可自行补充数据） -->
+      <div role="tabpanel" class="tab-pane" id="paid">
+        <!-- 示例：可在此处添加已支付订单卡片 -->
+        <p>暂无已支付订单</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入 jQuery -->
+  <script src="./jquery-3.7.1.js"></script>
+  <!-- 引入 Bootstrap 3 JS -->
+  <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+  <script>
+    // 使用jQuery
+    $(document).ready(function () {
+      $('#backButton').click(function () {
+        window.location.href = '个人中心.html';
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人中心</title>
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    .navBar {
+      height: 56px;
+      background-color: rgb(26, 36, 165);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    /* 中间区域 */
+    /* 用户信息 */
+    .userInfo {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .userInfo img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .userInfo div {
+      font-weight: 600;
+      font-size: 25px;
+    }
+
+    /* 操作列表 */
+    .operationList {
+      margin-top: 30px;
+    }
+
+    .operationList-item {
+      border-top: 0.3px solid #bbb;
+      border-bottom: 0.3px solid #bbb;
+      height: 60px;
+      line-height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .operationList span {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    .button {
+      background-color: #1989fa;
+      width: 90%;
+      height: 40px;
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+      border: none;
+    }
+
+    .footer {
+      width: 100%;
+      height: 40px;
+      padding: 5px;
+      position: fixed;
+      bottom: 0;
+    }
+
+    .tabbar {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    .tabbar-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .tabbar-box img {
+      width: 20%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部标题栏 -->
+  <div class="navBar">
+    <div class="navBarTitle">
+      个人中心
+    </div>
+  </div>
+
+  <!-- 中间内容区域 -->
+  <div style="width: 90%; margin: 0 auto">
+    <!-- 用户信息 -->
+    <div class="userInfo">
+      <img src="./素材/素材/0-引导图1.png">
+      <div>Test01</div>
+    </div>
+
+    <!-- 操作列表 -->
+    <div class="operationList">
+      <div class="operationList-item">
+        <div>个人信息</div>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" id="backButton"></span>
+      </div>
+      <div class="operationList-item">
+        <div>订单列表</div>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" id="backButton1"></span>
+      </div>
+      <div class="operationList-item">
+        <div>修改密码</div>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" id="backButton2"></span>
+      </div>
+      <div class="operationList-item">
+        <div>意见反馈</div>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" id="backButton3"></span>
+      </div>
+    </div>
+
+    <!-- 退出按钮 -->
+    <button class="button" onclick="window.location.href='引导页实现.html'">退出</button>
+  </div>
+
+  <!-- 底部导航栏 -->
+  <div class="footer">
+    <div class="tabbar">
+      <div class="tabbar-box" data-url="index.html">
+        <img src="./素材/素材/机会酒店.png">
+        <div>首页</div>
+      </div>
+      <div class="tabbar-box" data-url="数据分析页实现.html">
+        <img src="./素材/素材/数据分析.png">
+        <div>数据分析</div>
+      </div>
+      <div class="tabbar-box" data-url="智慧党建.html">
+        <img src="./素材/素材/智慧党建.png">
+        <div>智慧党建</div>
+      </div>
+      <div class="tabbar-box" data-url="个人中心.html">
+        <img src="./素材/素材/机会酒店.png">
+        <div>个人中心</div>
+      </div>
+    </div>
+
+    <script src="./jquery-3.7.1.js"></script>
+    <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+      $(
+        function () {
+          $('.tabbar-box').click(
+            function () {
+              let url = $(this).data('url');
+              window.location.href = url;
+            }
+          )
+        }
+      )
+    </script>
+
+    <script>
+      // 使用jQuery
+      $(document).ready(function () {
+        $('#backButton').click(function () {
+          window.location.href = '个人信息.html';
+        });
+      });
+    </script>
+
+    <script>
+      // 使用jQuery
+      $(document).ready(function () {
+        $('#backButton1').click(function () {
+          window.location.href = '订单列表.html';
+        });
+      });
+    </script>
+
+    <script>
+      // 使用jQuery
+      $(document).ready(function () {
+        $('#backButton2').click(function () {
+          window.location.href = '修改密码.html';
+        });
+      });
+    </script>
+
+    <script>
+      // 使用jQuery
+      $(document).ready(function () {
+        $('#backButton3').click(function () {
+          window.location.href = '意见反馈.html';
+        });
+      });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    .navBar {
+      height: 56px;
+      background-color: rgb(26, 36, 165);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .footer {
+      width: 100%;
+      height: 40px;
+      padding: 5px;
+      position: fixed;
+      bottom: 0;
+    }
+
+    .tabbar {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    .tabbar-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .tabbar-box img {
+      width: 20%;
+    }
+
+    .data {
+      width: 100%;
+      height: 450px;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部标题栏 -->
+  <div class="navBar">
+    <div class="navBarTitle">
+      数据分析
+    </div>
+  </div>
+
+  <!-- 中间图表 -->
+  <div class="data">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <!-- 底部导航栏 -->
+  <div class="footer">
+    <div class="tabbar">
+      <div class="tabbar-box" data-url="index.html">
+        <img src="./素材/素材/机会酒店.png">
+        <div>首页</div>
+      </div>
+      <div class="tabbar-box" data-url="数据分析页实现.html">
+        <img src="./素材/素材/数据分析.png">
+        <div>数据分析</div>
+      </div>
+      <div class="tabbar-box" data-url="智慧党建.html">
+        <img src="./素材/素材/智慧党建.png">
+        <div>智慧党建</div>
+      </div>
+      <div class="tabbar-box" data-url="个人中心.html">
+        <img src="./素材/素材/机会酒店.png">
+        <div>个人中心</div>
+      </div>
+    </div>
+
+    <script src="./jquery-3.7.1.js"></script>
+    <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+    <script>
+      var canvas = document.getElementById('canvas');
+      canvas.width = 300;
+      canvas.height = 400;
+      var ctx = canvas.getContext('2d');
+      var x0 = 30,
+        y0 = 280,
+        x1 = 300,
+        y1 = 30,
+        dis = 30;
+      xDis = 30,
+        width = 40;
+      yDis = y0 - y1;
+      draw();
+
+      function draw() {
+        // 绘制X和Y轴
+        ctx.beginPath();
+        ctx.lineWidth = 1;
+        ctx.moveTo(x0, y1);
+        ctx.lineTo(x0, y0);
+        ctx.lineTo(x1, y0);
+        ctx.stroke();
+        // 绘制虚线和Y轴的值
+        ctx.fillText(0, x0 - 20, y0); // 绘制原点0
+        while (yDis > dis) {
+          ctx.setLineDash([2, 2]);// 实线和空白的比例
+          ctx.moveTo(x1, y0 - dis);
+          ctx.lineTo(x0, y0 - dis);
+          ctx.fillText(dis, x0 - 20, y0 - dis); // 绘制原点0
+          dis = dis + 30;
+          ctx.stroke();
+        }
+        // 绘制X轴的标签
+        for (var i = 0; i < 4; i++) {
+          ctx.beginPath();
+          var color = '#' + Math.random().toString(16).substr(2, 6).toUpperCase();// 随机颜色
+          ctx.fillStyle = color;
+          ctx.font = '13px';
+          var height = Math.round(Math.random() * 220 + 20);
+          var rectX = x0 + (width + xDis) * i;
+          rectY = height;
+          // 绘制文字
+          ctx.fillText(i + 1 + '月份', rectX, y0 + 15); // 绘制X轴下方月份
+          ctx.fillRect(rectX, y0, width, -height); // 绘制柱子
+          ctx.fillText(rectY, rectX + 10, 280 - rectY - 5); // 绘制X轴下方月份
+        }
+      }
+    </script>
+
+    <script type="text/javascript">
+      $(
+        function () {
+          $('.tabbar-box').click(
+            function () {
+              let url = $(this).data('url');
+              window.location.href = url;
+            }
+          )
+        }
+      )
+    </script>
+</body>
+
+</html>

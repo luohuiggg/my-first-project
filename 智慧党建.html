@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    .navBar {
+      height: 56px;
+      background-color: rgb(26, 36, 165);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .footer {
+      width: 100%;
+      height: 40px;
+      padding: 5px;
+      position: fixed;
+      bottom: 0;
+    }
+
+    .tabbar {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    .tabbar-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .tabbar-box img {
+      width: 20%;
+    }
+
+    /* 党建分类 */
+    .grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, auto);
+    }
+
+    .grid div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .grid div img {
+      width: 40px;
+      height: 40px;
+    }
+
+    /* 新闻专栏 */
+    .lines {
+      width: 100%;
+      height: 30px;
+      font-size: 20px;
+      border-left: 8px solid #1a24a5;
+      font-weight: bold;
+      text-indent: 12px;
+      margin: 10px 0;
+    }
+
+    .newsList {
+      border-radius: 30px;
+      display: grid;
+      grid-template-columns: repeat(1, auto);
+    }
+
+    .newsList .news-list-box {
+      display: flex;
+      margin-bottom: 10px;
+      flex-direction: row;
+      padding: 5px;
+      flex: 1;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .newsList img {
+      width: 120px;
+      height: 80px;
+      border-radius: 12px;
+    }
+
+    img {
+      vertical-align: middle;
+    }
+
+    .newsList .news-list-box div {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部标题栏 -->
+  <div class="navBar">
+    <div class="navBarTitle">
+      智慧党建
+    </div>
+  </div>
+
+  <div style="width: 90%; margin: 0 auto;">
+    <!-- 党建轮播 -->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="./素材/素材/党建素材/banner3.jpg" style="width: 100%;height: 150px;" />
+        </div>
+        <div class="item">
+          <img src="./素材/素材/党建素材/banner2.jpg" style="width: 100%;height: 150px;" />
+        </div>
+        <div class="item">
+          <img src="./素材/素材/党建素材/banner1.jpg" style="width: 100%;height: 150px;" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 党建分类 -->
+    <div class="grid">
+      <div>
+        <img src="./素材/素材/党建素材/课程分类.png">
+        <div>学习分类</div>
+      </div>
+      <div>
+        <img src="./素材/素材/党建素材/章节管理.png">
+        <div>学习管理</div>
+      </div>
+      <div>
+        <img src="./素材/素材/党建素材/课程评价.png">
+        <div>学习笔记</div>
+      </div>
+      <div>
+        <img src="./素材/素材/党建素材/学习记录.png">
+        <div>学习章节</div>
+      </div>
+      <div>
+        <img src="./素材/素材/党建素材/更多.png">
+        <div>更多</div>
+      </div>
+    </div>
+
+    <div class="lines">新闻专栏</div>
+    <!-- 新闻专栏 -->
+    <div class="newsList">
+      <div class="news-list-box">
+        <img src="./素材/素材/党建素材/文章列表/文章1.jpg">
+        <div>
+          11月28日下午，新当选的中国共产党湖南省第十二届委员会常务委员会委员集体合影
+        </div>
+      </div>
+      <div class="news-list-box">
+        <img src="./素材/素材/党建素材/文章列表/文章2.jpg">
+        <div>
+          强化政治引领，筑牢思想根基“聚合力”
+        </div>
+      </div>
+      <div class="news-list-box">
+        <img src="./素材/素材/党建素材/文章列表/文章3.jpg">
+        <div>
+          马栏山红色经典影像修复工程顺利推进
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+
+  <!-- 底部导航栏 -->
+  <div class="footer">
+    <div class="tabbar">
+      <div class="tabbar-box" data-url="index.html">
+        <img src="./素材/素材/机会酒店.png">
+        <div>首页</div>
+      </div>
+      <div class="tabbar-box" data-url="数据分析页实现.html">
+        <img src="./素材/素材/数据分析.png">
+        <div>数据分析</div>
+      </div>
+      <div class="tabbar-box" data-url="智慧党建.html">
+        <img src="./素材/素材/智慧党建.png">
+        <div>智慧党建</div>
+      </div>
+      <div class="tabbar-box" data-url="个人中心.html">
+        <img src="./素材/素材/机会酒店.png">
+        <div>个人中心</div>
+      </div>
+    </div>
+
+    <script src="./jquery-3.7.1.js"></script>
+    <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+      $(
+        function () {
+          $('.tabbar-box').click(
+            function () {
+              let url = $(this).data('url');
+              window.location.href = url;
+            }
+          )
+        }
+      )
+    </script>
+</body>
+
+</html>

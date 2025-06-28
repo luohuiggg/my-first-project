@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>意见反馈</title>
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    :root {
+      --primary-purple: #6f42c1;
+      --bg-gray: #e6e6e6;
+      --nav-bg: rgb(26, 36, 165);
+      --error-red: #dc3545;
+    }
+
+    .navBar {
+      height: 56px;
+      background-color: var(--nav-bg);
+      display: flex;
+      align-items: center;
+      color: white;
+      position: relative;
+      padding: 0 15px;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .form-container {
+      width: 100%;
+      padding: 30px 15px;
+    }
+
+    .form-group {
+      max-width: 500px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+    }
+
+    .form-control {
+      background-color: var(--bg-gray);
+      border: none;
+      box-shadow: none;
+      resize: none;
+      min-height: 150px;
+      width: 100%;
+      padding-bottom: 25px;
+      /* 为字符计数留出空间 */
+    }
+
+    .word-count {
+      text-align: right;
+      color: #999;
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+      font-size: 12px;
+      background-color: var(--bg-gray);
+      padding: 0 5px;
+    }
+
+    .word-count.limit-exceeded {
+      color: var(--error-red);
+      font-weight: bold;
+    }
+
+    .btn-purple {
+      width: 100%;
+      max-width: 500px;
+      background-color: var(--primary-purple);
+      color: #fff;
+      border: none;
+      margin: 80px auto 0;
+      padding: 12px;
+      display: block;
+    }
+
+    .btn-purple:hover {
+      background-color: #5a3297;
+    }
+
+    .btn-purple:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navBar">
+    <a href="javascript:history.back()" style="color: white;">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" id="backButton"></span>
+    </a>
+    <div class="navBarTitle">意见反馈</div>
+  </div>
+
+  <div class="container form-container">
+    <div class="row">
+      <div class="col-xs-12">
+        <form id="feedbackForm">
+          <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="输入意见反馈" id="feedbackText" maxlength="150"></textarea>
+            <div class="word-count" id="wordCount">0/150</div>
+          </div>
+          <button type="submit" class="btn btn-purple" id="submitBtn">提交</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./jquery-3.7.1.js"></script>
+  <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+  <script>
+    $(document).ready(function () {
+      const MAX_LENGTH = 150;
+      const $feedbackText = $('#feedbackText');
+      const $wordCount = $('#wordCount');
+      const $submitBtn = $('#submitBtn');
+
+      // 返回按钮跳转
+      $('#backButton').click(function () {
+        window.location.href = '个人中心.html';
+      });
+
+      // 动态字符计数和限制
+      $feedbackText.on('input', function () {
+        const currentLength = $(this).val().length;
+        const remaining = MAX_LENGTH - currentLength;
+
+        // 更新字符计数显示
+        $wordCount.text(currentLength + '/' + MAX_LENGTH);
+
+        // 超过限制时改变样式
+        if (currentLength > MAX_LENGTH) {
+          $wordCount.addClass('limit-exceeded');
+          $submitBtn.prop('disabled', true);
+        } else {
+          $wordCount.removeClass('limit-exceeded');
+          $submitBtn.prop('disabled', false);
+        }
+
+        // 实时截断超过限制的字符
+        if (currentLength > MAX_LENGTH) {
+          $(this).val($(this).val().substring(0, MAX_LENGTH));
+          $wordCount.text(MAX_LENGTH + '/' + MAX_LENGTH);
+        }
+      });
+
+      // 表单提交处理
+      $('#feedbackForm').on('submit', function (e) {
+        e.preventDefault();
+        const content = $feedbackText.val();
+
+        if (content.length > MAX_LENGTH) {
+          alert('内容长度不能超过150个字符！');
+          return;
+        }
+
+        if (!content.trim()) {
+          alert('请输入反馈内容！');
+          return;
+        }
+
+        // 这里可以对接后端API
+        alert('已提交反馈：\n' + content);
+
+        // 重置表单
+        $feedbackText.val('');
+        $wordCount.text('0/' + MAX_LENGTH).removeClass('limit-exceeded');
+        $submitBtn.prop('disabled', false);
+      });
+
+      // 初始化禁用提交按钮（可选）
+      $submitBtn.prop('disabled', true);
+    });
+  </script>
+</body>
+
+</html>

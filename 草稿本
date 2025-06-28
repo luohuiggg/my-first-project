@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>意见反馈</title>
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    :root {
+      --primary-purple: #6f42c1;
+      --bg-gray: #e6e6e6;
+      --nav-bg: rgb(26, 36, 165);
+    }
+
+    .navBar {
+      height: 56px;
+      background-color: var(--nav-bg);
+      display: flex;
+      align-items: center;
+      color: white;
+      position: relative;
+      padding: 0 15px;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .form-container {
+      width: 100%;
+      padding: 30px 15px;
+    }
+
+    .form-group {
+      max-width: 500px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .form-control {
+      background-color: var(--bg-gray);
+      border: none;
+      box-shadow: none;
+      resize: none;
+      min-height: 150px;
+      width: 100%;
+    }
+
+    .word-count {
+      text-align: right;
+      color: #999;
+      margin-top: -25px;
+      margin-right: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-purple {
+      width: 100%;
+      background-color: var(--primary-purple);
+      color: #fff;
+      border: none;
+      margin-top: 80px;
+      padding: 12px;
+    }
+
+    .btn-purple:hover {
+      background-color: #5a3297;
+    }
+  </style>
+</head>
+<body>
+  <div class="navBar">
+    <a href="javascript:history.back()" style="color: white;">
+      <!-- 替换为纯 HTML 箭头，兼容无字体文件场景 -->
+      <span style="font-size:20px;">&larr;</span>
+    </a>
+    <div class="navBarTitle">意见反馈</div>
+  </div>
+
+  <div class="container form-container">
+    <div class="row">
+      <div class="col-xs-12">
+        <form>
+          <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="输入意见反馈" id="feedbackText"></textarea>
+            <div class="word-count" id="wordCount">0/150</div>
+          </div>
+          <button type="submit" class="btn btn-purple">提交</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./jquery-3.7.1.js"></script>
+  <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+  <script>
+    // 字数统计
+    $(function () {
+      $("#feedbackText").on("input", function () {
+        var length = $(this).val().length;
+        $("#wordCount").text(length + "/150");
+      });
+    });
+
+    // 返回按钮跳转（确保"个人中心.html"路径正确）
+    $(document).ready(function () {
+      $('#backButton').click(function () {
+        window.location.href = '个人中心.html';
+      });
+    });
+
+    // 表单提交逻辑（可选扩展）
+    $('form').on('submit', function(e) {
+      e.preventDefault();
+      const content = $('#feedbackText').val();
+      // 这里可对接后端 API，示例用 alert 演示
+      alert('已提交反馈：\n' + content);
+      // 提交后清空文本域
+      $('#feedbackText').val('').trigger('input'); // 触发字数重置
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>意见反馈</title>
+  <!-- 引入 Bootstrap 3 的 CSS 文件 -->
+  <link rel="stylesheet" href="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/css/bootstrap.css">
+  <style>
+    .navBar {
+      height: 56px;
+      background-color: rgb(26, 36, 165);
+      display: flex;
+      align-items: center;
+      color: white;
+      position: relative;
+      padding: 0 15px;
+    }
+
+    .navBar span {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    .navBarTitle {
+      font-size: 20px;
+      font-weight: 600;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* 表单容器样式：用 Bootstrap 网格 + Flex 居中 */
+    .form-container {
+      width: 100%;
+      padding: 30px 15px;
+      /* 替代 margin，适配移动端 */
+    }
+
+    /* 表单组：让内容水平居中 */
+    .form-group {
+      max-width: 500px;
+      /* 限制最大宽度 */
+      margin: 0 auto;
+      /* 水平居中 */
+      width: 100%;
+      /* 占满父容器 */
+    }
+
+    /* 文本域样式：去掉硬编码的宽度和 margin */
+    .form-control {
+      background-color: #e6e6e6;
+      border: none;
+      box-shadow: none;
+      resize: none;
+      min-height: 150px;
+      width: 100%;
+      /* 占满父容器 */
+    }
+
+    /* 字数统计：跟随文本域宽度，右对齐 */
+    .word-count {
+      text-align: right;
+      color: #999;
+      margin-top: -25px;
+      margin-right: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 提交按钮：与文本域同宽，居中 */
+    .btn-purple {
+      width: 100%;
+      background-color: #6f42c1;
+      color: #fff;
+      border: none;
+      margin-top: 80px;
+      /* 合理间距，替代 50px */
+      padding: 12px;
+    }
+
+    .btn-purple:hover {
+      background-color: #5a3297;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部标题栏 -->
+  <div class="navBar">
+    <a href="javascript:history.back()" style="color: white;">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" id="backButton"></span>
+    </a>
+    <div class="navBarTitle">
+      意见反馈
+    </div>
+  </div>
+
+  <!-- 表单容器：用 Bootstrap 容器 + 网格 -->
+  <div class="container form-container">
+    <div class="row">
+      <div class="col-xs-12">
+        <form>
+          <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="输入意见反馈" id="feedbackText"></textarea>
+            <div class="word-count" id="wordCount">0/150</div>
+          </div>
+          <button type="submit" class="btn btn-purple">提交</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入 jQuery 文件 -->
+  <script src="./jquery-3.7.1.js"></script>
+  <!-- 引入 Bootstrap 3 的 JS 文件 -->
+  <script src="./bootstrap-3.4.1-dist/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+  <script>
+    // 监听文本域输入事件，实时统计字数
+    $(function () {
+      $("#feedbackText").on("input", function () {
+        var length = $(this).val().length;
+        $("#wordCount").text(length + "/150");
+      });
+    });
+  </script>
+
+  <script>
+    // 使用jQuery
+    $(document).ready(function () {
+      $('#backButton').click(function () {
+        window.location.href = '个人中心.html';
+      });
+    });
+  </script>
+</body>
+
+</html>
